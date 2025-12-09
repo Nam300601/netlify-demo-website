@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Nguyễn Văn Nam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header - Đầu trang */
+        .dau-trang {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .noi-dung-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .thanh-dieu-huong {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .thanh-dieu-huong a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .thanh-dieu-huong a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Phần giới thiệu */
+        .phan-gioi-thieu {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .noi-dung-gioi-thieu {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .noi-dung-gioi-thieu h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: xuatHien 1s ease-out;
+        }
+
+        .noi-dung-gioi-thieu p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .nut-hanh-dong {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nut-hanh-dong:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Nội dung chính */
+        .noi-dung-chinh {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .phan {
+            margin-bottom: 4rem;
+        }
+
+        .tieu-de-phan {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #667eea;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .tieu-de-phan::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* Thông tin cá nhân */
+        .thong-tin-ca-nhan {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .anh-dai-dien {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .chi-tiet-thong-tin h3 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .chi-tiet-thong-tin p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Học vấn */
+        .danh-sach-hoc-van {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .muc-hoc-van {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .muc-hoc-van:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .muc-hoc-van h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .muc-hoc-van .thoi-gian {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* kinh nghiem */
+        .danh-sach-kinh-nghiem {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .muc-kinh-nghiem {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .muc-kinh-nghiem:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .muc-kinh-nghiem h3 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .muc-kinh-nghiem .vi-tri {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* kỹ năng */
+        .danh-sach-ky-nang {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .muc-ky-nang {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .muc-ky-nang:hover {
+            transform: scale(1.05);
+        }
+
+        .muc-ky-nang i {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .muc-ky-nang h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .thanh-tien-trinh {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .tien-trinh {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        /* Bài viết */
+        .danh-sach-bai-viet {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .the-bai-viet {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .the-bai-viet:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .anh-bai-viet {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .noi-dung-bai-viet {
+            padding: 1.5rem;
+        }
+
+        .noi-dung-bai-viet h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .noi-dung-bai-viet p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .doc-them {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .doc-them:hover {
+            gap: 1rem;
+        }
+
+        /* chân trang */
+        .chan-trang {
+            background: #2d3436;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .noi-dung-footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cot-footer h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .cot-footer ul {
+            list-style: none;
+        }
+
+        .cot-footer a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .cot-footer a:hover {
+            color: #667eea;
+            padding-left: 5px;
+        }
+
+        .mang-xa-hoi {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .mang-xa-hoi a {
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .mang-xa-hoi a:hover {
+            color: #667eea;
+            transform: scale(1.2);
+        }
+
+        .ban-quyen {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        @keyframes xuatHien {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .thanh-dieu-huong {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .thong-tin-ca-nhan {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .noi-dung-gioi-thieu h1 {
+                font-size: 2rem;
+            }
+
+            .tieu-de-phan {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dau-trang">
+        <div class="noi-dung-header">
+            <a href="#" class="logo">Portfolio</a>
+            <nav>
+                <ul class="thanh-dieu-huong">
+                    <li><a href="#trang-chu">Trang Chủ</a></li>
+                    <li><a href="#thong-tin">Thông Tin</a></li>
+                    <li><a href="#ky-nang">Kỹ Năng</a></li>
+                    <li><a href="#bai-viet">Bài Viết</a></li>
+                    <li><a href="#lien-he">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Phần giới thiệu -->
+    <section class="phan-gioi-thieu" id="trang-chu">
+        <div class="noi-dung-gioi-thieu">
+            <h1>Xin chào, tôi là Nguyễn Văn Nam</h1>
+            <p>Exploit Engineer | Bug Bounty Hunter | Cyber Mercenary</p>
+            <a href="#lien-he" class="nut-hanh-dong">Liên Hệ Với Tôi</a>
+        </div>
+    </section>
+
+    <!-- Nội dung chính -->
+    <main class="noi-dung-chinh">
+        <!-- Thông tin cá nhân -->
+        <section class="phan" id="thong-tin">
+            <h2 class="tieu-de-phan">Thông Tin Cá Nhân</h2>
+            <div class="thong-tin-ca-nhan">
+                <img src="https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/488249955_2361504410891941_2329602636314643284_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGR1I0Rh8CR_ctkhCdBhZK46pDHLsd22yTqkMcux3bbJIfjEOSKU-05PCSV6trwvHT8QnWUmumOHFsZNo-bmltY&_nc_ohc=uQvkVmEelRQQ7kNvwE-dn23&_nc_oc=AdnzEByUyunP8vXb9SWGBkSk55C10Exhs_YVZsJACP5bpHUeDIt7pNMQfvWS-0kYv50&_nc_zt=23&_nc_ht=scontent.fdad3-5.fna&_nc_gid=jbSHEu8YYmhKCwoww4QLqw&oh=00_Afm2LFPg7PRKvwL1x6dlXshrIq_n9PWHJ5IG60E3utSY5A&oe=693CCDCD" alt="Ảnh đại diện" class="anh-dai-dien">
+                <div class="chi-tiet-thong-tin">
+                    <h3>Nguyễn Văn Nam</h3>
+                    <p><i class="fas fa-birthday-cake"></i> Ngày sinh: 30/06/2001</p>
+                    <p><i class="fas fa-envelope"></i> Email: namhacker96@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> SĐT: 0797979799</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: Đố bạn tìm ra địa chỉ của tôi</p>
+                    <p style="margin-top: 1rem;">Là một nhân tố nguy hiểm am hiểu sâu sắc kiến trúc hệ thống, tôi đã dành rất nhiều năm để khai thác và kiểm soát không gian mạng. Tôi không ngừng săn tìm các lỗ hổng zero-day để định hình lại thế giới số theo ý mình..</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Học vấn -->
+        <section class="phan">
+            <h2 class="tieu-de-phan">Học Vấn</h2>
+            <div class="danh-sach-hoc-van">
+                <div class="muc-hoc-van">
+    <h3>The Cult of the Dead Cow (cDc)</h3>
+    <p class="thoi-gian"><i class="fas fa-calendar"></i> 2019 - 2022</p>
+    <p>Năng lực Tích lũy: Phát triển Toolsets Độc quyền &amp; Phân tích Mật mã (Proprietary Tooling &amp; Cryptanalysis)</p>
+    <p>Thành tích: Đã vượt qua các Bài kiểm tra An ninh Mạng Cấp độ X (Level X Security Audits)</p>
+</div>
+<div class="muc-hoc-van">
+    <h3>Anonymous Collective Certification</h3>
+    <p class="thoi-gian"><i class="fas fa-calendar"></i> 2022</p>
+    <p>Nền tảng: Chiến dịch Vận hành Thông tin Tích cực (Active Information Operations)</p>
+</div>
+            </div>
+        </section>
+
+        <!-- Kinh nghiệm làm việc -->
+        <section class="phan">
+            <h2 class="tieu-de-phan">Kinh Nghiệm Làm Việc</h2>
+            <div class="danh-sach-kinh-nghiem">
+                <div class="muc-kinh-nghiem">
+    <h3>Syndicate Zero (Tổ chức Vận hành Ngầm)</h3>
+    <p class="vi-tri">**Red Team Lead / Exploit Architect**</p>
+    <p class="thoi-gian"><i class="fas fa-calendar"></i> 2016 - Hiện tại</p>
+    <p>• **Thiết kế và Triển khai các Chiến dịch Phishing/Ransomware** quy mô lớn nhắm vào các Tập đoàn Tài chính cấp I (Tier 1 Financial Institutions).</p>
+    <p>• Tham gia **Xây dựng hệ thống C&amp;C (Command &amp; Control) tàng hình**, duy trì sự hiện diện lâu dài trong các mạng lưới đối thủ.</p>
+    <p>• Vận hành theo **Mô hình Tác chiến Mạng Lưới Phân tán**, đảm bảo tính ẩn danh và khả năng thoát thân tuyệt đối.</p>
+</div>
+<div class="muc-kinh-nghiem">
+    <h3>Black Market Consultant (Cố vấn Thị trường Đen)</h3>
+    <p class="vi-tri">**Cipher Analyst / Data Exfiltrator**</p>
+    <p class="thoi-gian"><i class="fas fa-calendar"></i> 2016 - Hiện tại</p>
+    <p>• **Cung cấp Dịch vụ Xuyên phá An ninh** cho các Khách hàng có nhu cầu thu thập thông tin bí mật từ các đối thủ cạnh tranh.</p>
+    <p>• **Thiết kế các vector tấn công Social Engineering** và phát triển Rootkits tùy chỉnh để vượt qua hệ thống DLP (Data Loss Prevention).</p>
+</div>
+            </div>
+        </section>
+
+        <!-- Kỹ năng -->
+        <section class="phan" id="ky-nang">
+    <h2 class="tieu-de-phan">Kho Công cụ Đặc nhiệm (Covert Toolset)</h2>
+    <div class="danh-sach-ky-nang">
+        <div class="muc-ky-nang">
+            <i class="fas fa-terminal"></i>
+            <h3>Penetration Testing (Kiểm tra Xâm nhập)</h3>
+            <p>Mastery (Làm chủ)</p>
+            <div class="thanh-tien-trinh">
+                <div class="tien-trinh" style="width: 95%"></div>
+            </div>
+        </div>
+        <div class="muc-ky-nang">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Reverse Engineering (Kỹ thuật Đảo ngược)</h3>
+            <p>Advanced (Nâng cao)</p>
+            <div class="thanh-tien-trinh">
+                <div class="tien-trinh" style="width: 90%"></div>
+            </div>
+        </div>
+        <div class="muc-ky-nang">
+            <i class="fas fa-lock-open"></i>
+            <h3>Cryptography &amp; Steganography (Mật mã &amp; Ẩn mã)</h3>
+            <p>Expert (Chuyên gia)</p>
+            <div class="thanh-tien-trinh">
+                <div class="tien-trinh" style="width: 85%"></div>
+            </div>
+        </div>
+        <div class="muc-ky-nang">
+            <i class="fas fa-bug"></i>
+            <h3>Exploit Development (Phát triển Khai thác)</h3>
+            <p>High Proficiency (Thành thạo cao)</p>
+            <div class="thanh-tien-trinh">
+                <div class="tien-trinh" style="width: 80%"></div>
+            </div>
+        </div>
+        <div class="muc-ky-nang">
+            <i class="fas fa-code-branch"></i>
+            <h3>OSINT &amp; Social Engineering (Kỹ thuật Xã hội)</h3>
+            <p>Elite (Cấp độ ưu tú)</p>
+            <div class="thanh-tien-trinh">
+                <div class="tien-trinh" style="width: 95%"></div>
+            </div>
+        </div>
+        <div class="muc-ky-nang">
+            <i class="fas fa-server"></i>
+            <h3>TTPs &amp; Evasion (Kỹ thuật Tàng hình)</h3>
+            <p>Exceptional (Ngoại hạng)</p>
+            <div class="thanh-tien-trinh">
+                <div class="tien-trinh" style="width: 90%"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="phan" id="bai-viet">
+    <h2 class="tieu-de-phan">Báo Cáo Tình Báo Đã Phân Loại (Classified Intel Reports)</h2>
+    <div class="danh-sach-bai-viet">
+        <article class="the-bai-viet">
+            <img src="https://app.gak.vn/storage/uploads/dOILZ22Mj4tAzVqwgfq8Bj4ExZHt224ceUh5yj14.jpg" alt="Báo cáo 1: Lỗ hổng Mã hóa" class="anh-bai-viet">
+            <div class="noi-dung-bai-viet">
+                <h3>Phân tích Zero-Day: Tấn công Supply Chain qua Lỗ hổng Mã hóa</h3>
+                <p>Nghiên cứu chuyên sâu về phương pháp khai thác lỗ hổng trong chuỗi cung ứng thông qua các giao thức mã hóa yếu...</p>
+                <a href="#" class="doc-them">Truy Cập Tập Tin (Access File) <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+        <article class="the-bai-viet">
+            <img src="https://inkythuatso.com/uploads/thumbnails/800/2023/01/f32089713cc5c2d1f065e0310ca5679c-16-10-54-00.jpg" alt="Báo cáo 2: Kỹ thuật Bẻ khóa" class="anh-bai-viet">
+            <div class="noi-dung-bai-viet">
+                <h3>Kỹ thuật Bẻ khóa và Xâm nhập Hệ thống Cũ (Legacy System Decrypt)</h3>
+                <p>Các tricks và công cụ tùy chỉnh được sử dụng để vô hiệu hóa bảo mật và duy trì quyền truy cập tàng hình...</p>
+                <a href="#" class="doc-them">Truy Cập Tập Tin (Access File) <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+        <article class="the-bai-viet">
+            <img src="https://pic.pikbest.com/19/61/48/38v888piCFqS.jpg!w340" alt="Báo cáo 3: Hệ thống C&C" class="anh-bai-viet">
+            <div class="noi-dung-bai-viet">
+                <h3>TTPs: Xây dựng Hệ thống C&amp;C Tàng hình qua Mạng Lưới TOR</h3>
+                <p>Chi tiết về chiến thuật, kỹ thuật và quy trình (TTPs) để thiết lập Command &amp; Control mà không để lại dấu vết...</p>
+                <a href="#" class="doc-them">Truy Cập Tập Tin (Access File) <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </article>
+    </div>
+</section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="chan-trang" id="lien-he">
+        <div class="noi-dung-footer">
+            <div class="cot-footer">
+                <h3>Về tôi</h3>
+                <p>Cyber Spectre.</p>
+            </div>
+            <div class="cot-footer">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="#trang-chu">Trang chủ</a></li>
+                    <li><a href="#thong-tin">Thông tin</a></li>
+                    <li><a href="#ky-nang">Kỹ năng</a></li>
+                    <li><a href="#bai-viet">Bài viết</a></li>
+                </ul>
+            </div>
+            <div class="cot-footer">
+                <h3>Liên hệ</h3>
+                <p><i class="fas fa-envelope"></i> namhacker96@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 0797979799</p>
+                <p><i class="fas fa-map-marker-alt"></i> Việt Nam</p>
+            </div>
+            <div class="cot-footer">
+                <h3>Mạng xã hội</h3>
+                <div class="mang-xa-hoi">
+                    <a href="https://www.facebook.com/nguyen.nam.231206/photos_by"><i class="fab fa-facebook"></i></a>
+                    <a href="https://github.com/Nam300601"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="ban-quyen">
+            <p>&copy; 2025 Nguyễn Văn Nam. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
